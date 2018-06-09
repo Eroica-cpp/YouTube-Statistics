@@ -11,8 +11,9 @@ An example to retrieve top 20 YouTube channels whose category is news and langua
 $ youtubestat.py -category news -topN 20 -language English
 ```
 
-Cite
+Citation
 ----
+If this work is useful for your research, please cite our code:
 ```
 @article{lin2015modeling,
   title={Modeling the impacts of inclement weather on freeway traffic speed: exploratory study with social media data},
@@ -27,4 +28,4 @@ Cite
 
 License
 ----
-[FreeBSD License](https://opensource.org/licenses/BSD-2-Clause)
+youtubestat.py is licensed under [FreeBSD](https://opensource.org/licenses/BSD-2-Clause).

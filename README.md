@@ -45,14 +45,8 @@ Citation
 ----
 If this work is useful for your research, please cite our [paper](https://library.nextrans.org/) or [code](https://github.com/Eroica-cpp/YouTube-Statistics):
 ```
-@article{lin2015modeling,
-  title={Modeling the impacts of inclement weather on freeway traffic speed: exploratory study with social media data},
-  author={Lin, Lei and Ni, Ming and He, Qing and Gao, Jing and Sadek, Adel W},
-  journal={Transportation Research Record: Journal of the Transportation Research Board},
-  number={2482},
-  pages={82--89},
-  year={2015},
-  publisher={Transportation Research Board of the National Academies}
+@misc{
+    TBD
 }
 ```
 

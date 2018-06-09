@@ -4,12 +4,11 @@ youtubestat.py is a Python module to download YouTube statistics and rankings fr
 
 Requirements
 ----
-* Python >= 2.7
-* beautifulsoup >= 4.6.0
-* bs4 >= 0.0.1
-* selenium >= 3.12.0
-* Firefox >= 60.0.1
-* geckodriver >= 0.20.1
+* [Python](https://www.python.org/download/releases/2.7.2/) >= 2.7
+* [beautifulsoup](https://www.crummy.com/software/BeautifulSoup/?#Download) >= 4.6.0
+* [selenium](https://www.seleniumhq.org/) >= 3.12.0
+* [Firefox](https://www.mozilla.org/en-US/firefox/new/) >= 60.0.1
+* [geckodriver](https://github.com/mozilla/geckodriver/releases) >= 0.20.1
 
 Usage
 ----
@@ -60,4 +59,4 @@ If this work is useful for your research, please cite our [paper](https://librar
 License
 ----
 * Source code is licensed under [FreeBSD](https://opensource.org/licenses/BSD-2-Clause).
-* Other content are licensed under the [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+* Other content are licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).

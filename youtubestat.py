@@ -27,31 +27,64 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 import optparse
-import os
-import re
 import sys
-import warnings
+import re
+import datetime
+import urllib2
+from bs4 import BeautifulSoup
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 
-try:
-    # Try importing for Python 3
-    from urllib.request import HTTPCookieProcessor, Request, build_opener
-    from urllib.parse import quote, unquote
-    from http.cookiejar import MozillaCookieJar
-except ImportError:
-    # Fallback for Python 2
-    from urllib2 import Request, build_opener, HTTPCookieProcessor
-    from urllib import quote, unquote
-    from cookielib import MozillaCookieJar
+def get_HTML(URL):
+    browser = webdriver.Firefox()
+    browser.get(URL)
+    html = browser.page_source.encode("utf-8")
+    with open("tmp.html", "w") as f:
+        f.write(html)
+    f.close()
+    return html
 
-# Import BeautifulSoup -- try 4 first, fall back to older
-try:
-    from bs4 import BeautifulSoup
-except ImportError:
-    try:
-        from BeautifulSoup import BeautifulSoup
-    except ImportError:
-        print('Please install BeautifulSoup.')
-        sys.exit(1)
+def get_data(html):
+    soup = BeautifulSoup(html, "lxml")
+
+    countries = []
+    for i in soup.find_all("div", class_="b-list-section b-section-c b-ib b-vat"):
+        name = i.get_text()
+        if name: countries.append(name)
+
+    channelNames = []
+    channelURLs = []
+    for i in soup.find_all("a", href=re.compile(r"/youtube/en/channel/[A-z0-9\-_]+/*")):
+        cID = i['href'].split("/")[-1]
+        cName = i.get_text()
+        channelURLs.append("https://www.youtube.com/channel/" + cID)
+        channelNames.append(cName)
+
+    monthlyViews = []
+    for i in soup.find_all("div", class_="b-list-section b-section-s b-ib b-vat b-section-mviews"):
+        views = i.get_text().replace(",", "")
+        monthlyViews.append(views)
+
+    subscribers = []
+    for i in soup.find_all("div", class_="b-list-section m-hide b-section-s b-section-subs b-ib b-vat"):
+        subs = i.get_text().replace(",", "")
+        subscribers.append(subs)
+
+    res = []
+    for i in range(len(countries)):
+        if countries[i] in ["United States", "United Kingdom", "N/A"]:
+            item = [countries[i], channelNames[i], monthlyViews[i], subscribers[i], channelURLs[i]]
+            res.append(item)
+    return res
+
+def output(res, topN=50, fmt="csv"):
+    res = res[:topN]
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    if fmt == "csv":
+        with open("./data/top {} channels as of {}.txt".format(str(topN), timestamp), "w") as f:
+            for i in res:
+                f.write(",".join(i) + "\n")
 
 def main():
     usage = "youtubestat.py [options] <query string>"
@@ -60,16 +93,23 @@ def main():
     group = optparse.OptionGroup(parser, 'Query arguments', 'These options define search query arguments and parameters.')
     group.add_option('-C', '--category', metavar='CATEGORY', default=None, help='Indicate the category, e.g. news, sports, education, etc.')
     group.add_option('-N', '--topN', metavar='TOPN', default=None, help='Indicate the number of channels to show')
-    group.add_option('-L', '--language', metavar='LANGUAGE', default=None, help='Indicate the channel language, e.g. English, Chinese, etc.')
+    group.add_option('-L', '--lang', metavar='LANGUAGE', default=None, help='Indicate the channel language, e.g. en, zh, es, etc.')
 
     parser.add_option_group(group)
 
     options, _ = parser.parse_args()
 
-    # Show help if we have neither keyword search nor author name
-    if len(sys.argv) == 1:
-        parser.print_help()
-        return 1
+    # # Show help if we have neither keyword search nor author name
+    # if len(sys.argv) == 1:
+    #     parser.print_help()
+    #     return 1
+
+    # URL = "https://www.kedoo.com/youtube/en/top-channels.html?period=now&category=25&lang=en"
+    # html = get_HTML(URL)
+
+    html = open("tmp.html").read()
+    res = get_data(html)
+    output(res)
 
     return 0
 

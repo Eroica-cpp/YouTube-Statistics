@@ -17,7 +17,7 @@ Try `youtubestat.py --help` for all available options.
 
 An example to retrieve top 20 YouTube channels whose category is news and language is English:
 ```
-$ youtubestat.py --category news --topN 20 --language English
+$ youtubestat.py --category news --topN 20 --lang en
 ```
 
 Citation

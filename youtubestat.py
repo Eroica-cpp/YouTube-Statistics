@@ -30,6 +30,7 @@ import optparse
 import sys
 import re
 import datetime
+import time
 import urllib2
 from bs4 import BeautifulSoup
 from selenium import webdriver
@@ -38,10 +39,9 @@ from selenium.webdriver.common.keys import Keys
 def get_HTML(URL):
     browser = webdriver.Firefox()
     browser.get(URL)
+    time.sleep(10)
     html = browser.page_source.encode("utf-8")
-    with open("tmp.html", "w") as f:
-        f.write(html)
-    f.close()
+    browser.close()
     return html
 
 def get_data(html):
@@ -73,18 +73,30 @@ def get_data(html):
     res = []
     for i in range(len(countries)):
         if countries[i] in ["United States", "United Kingdom", "N/A"]:
-            item = [countries[i], channelNames[i], monthlyViews[i], subscribers[i], channelURLs[i]]
+            item = [channelNames[i], countries[i], monthlyViews[i], subscribers[i], channelURLs[i]]
             res.append(item)
     return res
 
-def output(res, topN=50, fmt="csv"):
+def output(res, topN=20, fmt="csv"):
     res = res[:topN]
-    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d")
 
     if fmt == "csv":
-        with open("./data/top {} channels as of {}.txt".format(str(topN), timestamp), "w") as f:
+        with open("./data/top {} channels as of {}.csv".format(str(topN), timestamp), "w") as f:
+            counter = 1
             for i in res:
-                f.write(",".join(i) + "\n")
+                line = ",".join([str(counter)] + i)
+                f.write(line + "\n")
+                print line
+                counter += 1
+
+    if fmt == "md":
+        counter = 1
+        print "| # | Channel | Country | Monthly Views | Subscribers | "
+        print "|----:|----:|----:|----:|----:|"
+        for i in res:
+            print "| {} | [{}]({}) | {} | {} | {} |".format(str(counter), i[0], i[-1], i[1], i[2], i[3])
+            counter += 1
 
 def main():
     usage = "youtubestat.py [options] <query string>"
@@ -94,22 +106,21 @@ def main():
     group.add_option('-C', '--category', metavar='CATEGORY', default=None, help='Indicate the category, e.g. news, sports, education, etc.')
     group.add_option('-N', '--topN', metavar='TOPN', default=None, help='Indicate the number of channels to show')
     group.add_option('-L', '--lang', metavar='LANGUAGE', default=None, help='Indicate the channel language, e.g. en, zh, es, etc.')
+    group.add_option('-F', '--fmt', metavar='FORMAT', default=None, help='Indicate the output format, e.g. csv, txt, md, etc.')
 
     parser.add_option_group(group)
 
     options, _ = parser.parse_args()
 
-    # # Show help if we have neither keyword search nor author name
-    # if len(sys.argv) == 1:
-    #     parser.print_help()
-    #     return 1
+    # Show help if we have neither keyword search nor author name
+    if len(sys.argv) == 1:
+        parser.print_help()
+        return 1
 
-    # URL = "https://www.kedoo.com/youtube/en/top-channels.html?period=now&category=25&lang=en"
-    # html = get_HTML(URL)
-
-    html = open("tmp.html").read()
+    URL = "https://www.kedoo.com/youtube/en/top-channels.html?period=now&category=25&lang=en"
+    html = get_HTML(URL)
     res = get_data(html)
-    output(res)
+    output(res, topN=int(options.__dict__["topN"]), fmt=options.__dict__["fmt"])
 
     return 0
 

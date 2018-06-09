@@ -52,7 +52,7 @@ If this work is useful for your research, please cite our [paper](https://librar
   publisher = {GitHub},
   journal = {GitHub Repository},
   url = {https://github.com/Eroica-cpp/YouTube-Statistics},
-  doi = {10.5281/zenodo.1286292}
+  doi = {10.5281/zenodo.1286295}
 }
 ```
 [![DOI](https://zenodo.org/badge/136710691.svg)](https://zenodo.org/badge/latestdoi/136710691)

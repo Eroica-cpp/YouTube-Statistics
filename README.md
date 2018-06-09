@@ -1,6 +1,6 @@
 YouTube Statistics and Rankings
 ====
-youtubestat.py is a Python module to download YouTube statistics and rankings from [https://www.kedoo.com/youtube/](https://www.kedoo.com/youtube/).
+YoutubeStat.py is a Python module to download YouTube statistics and rankings from [https://www.kedoo.com/youtube/](https://www.kedoo.com/youtube/).
 
 Requirements
 ----
@@ -12,11 +12,11 @@ Requirements
 
 Usage
 ----
-Try `youtubestat.py --help` for all available options.
+Try `YoutubeStat.py --help` for all available options.
 
 An example to retrieve top 20 YouTube channels whose category is news and language is English:
 ```
-$ youtubestat.py --category news --topN 20 --lang en --fmt md
+$ YoutubeStat.py --category news --topN 20 --lang en --fmt md
 ```
 | # | Channel | Country | Monthly Views | Subscribers |
 |----:|----:|----:|----:|----:|
@@ -47,7 +47,7 @@ If this work is useful for your research, please cite our [paper](https://librar
 ```
 @misc{li2018youtubestat,
   author = {Tao Li, Lei Lin},
-  title = {youtubestat.py: a Python module to download YouTube statistics and rankings},
+  title = {YoutubeStat.py: a Python module to download YouTube statistics and rankings},
   year = {2018},
   publisher = {GitHub},
   journal = {GitHub Repository},

@@ -45,8 +45,14 @@ Citation
 ----
 If this work is useful for your research, please cite our [paper](https://library.nextrans.org/) or [code](https://github.com/Eroica-cpp/YouTube-Statistics):
 ```
-@misc{
-    TBD
+@misc{li2018youtubestat,
+  author = {Tao Li, Lei Lin},
+  title = {youtubestat.py: a Python module to download YouTube statistics and rankings},
+  year = {2018},
+  publisher = {GitHub},
+  journal = {GitHub Repository},
+  url = {https://github.com/Eroica-cpp/YouTube-Statistics},
+  doi = {10.5281/zenodo.1286292}
 }
 ```
 [![DOI](https://zenodo.org/badge/136710691.svg)](https://zenodo.org/badge/latestdoi/136710691)

@@ -20,7 +20,7 @@ An example to retrieve top 20 YouTube channels whose category is news and langua
 $ youtubestat.py --category news --topN 20 --lang en
 ```
 | # | Channel | Country | Monthly Views | Subscribers |
-|----|----|----|----|----|
+|----:|----:|----:|----:|----:|
 | 1 | [Inside Edition](https://www.youtube.com/channel/UC9k-yiEpRHMNVOnOi_aQK8w) | United States | 395025524 | 3129845 |
 | 2 | [CNN](https://www.youtube.com/channel/UCupvZG-5ko_eiXAupbDfxWw) | N/A | 155319328 | 3794747 |
 | 3 | [ABC News](https://www.youtube.com/channel/UCBi2mrWuNuyYy4gbM6fU18Q) | United States | 144872445 | 3850158 |

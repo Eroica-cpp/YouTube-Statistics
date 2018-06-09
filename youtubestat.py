@@ -55,6 +55,23 @@ except ImportError:
 
 def main():
     usage = "youtubestat.py [options] <query string>"
+    fmt = optparse.IndentedHelpFormatter(max_help_position=50, width=100)
+    parser = optparse.OptionParser(usage=usage, formatter=fmt)
+    group = optparse.OptionGroup(parser, 'Query arguments', 'These options define search query arguments and parameters.')
+    group.add_option('-C', '--category', metavar='CATEGORY', default=None, help='Indicate the category, e.g. news, sports, education, etc.')
+    group.add_option('-N', '--topN', metavar='TOPN', default=None, help='Indicate the number of channels to show')
+    group.add_option('-L', '--language', metavar='LANGUAGE', default=None, help='Indicate the channel language, e.g. English, Chinese, etc.')
+
+    parser.add_option_group(group)
+
+    options, _ = parser.parse_args()
+
+    # Show help if we have neither keyword search nor author name
+    if len(sys.argv) == 1:
+        parser.print_help()
+        return 1
+
+    return 0
 
 if __name__ == "__main__":
     sys.exit(main())

@@ -13,7 +13,7 @@ $ youtubestat.py --category news --topN 20 --language English
 
 Citation
 ----
-If this work is useful for your research, please cite our code:
+If this work is useful for your research, please cite our [paper](https://library.nextrans.org/) or [code](https://github.com/Eroica-cpp/YouTube-Statistics):
 ```
 @article{lin2015modeling,
   title={Modeling the impacts of inclement weather on freeway traffic speed: exploratory study with social media data},

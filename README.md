@@ -2,6 +2,13 @@ YouTube Statistics and Rankings
 ====
 youtubestat.py is a Python module to download YouTube statistics and rankings from [https://www.kedoo.com/youtube/](https://www.kedoo.com/youtube/).
 
+Requirements
+----
+* Python >=2.7
+* selenium >=3.12.0
+* beautifulsoup >=4-4.6.0 
+* bs4 >=0.0.1
+
 Usage
 ----
 Try `youtubestat.py --help` for all available options.

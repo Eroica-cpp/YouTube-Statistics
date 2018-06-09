@@ -17,7 +17,7 @@ Try `youtubestat.py --help` for all available options.
 
 An example to retrieve top 20 YouTube channels whose category is news and language is English:
 ```
-$ youtubestat.py --category news --topN 20 --lang en
+$ youtubestat.py --category news --topN 20 --lang en --fmt md
 ```
 | # | Channel | Country | Monthly Views | Subscribers |
 |----:|----:|----:|----:|----:|
@@ -59,4 +59,5 @@ If this work is useful for your research, please cite our [paper](https://librar
 
 License
 ----
-youtubestat.py is licensed under [FreeBSD](https://opensource.org/licenses/BSD-2-Clause).
+* Source code is licensed under [FreeBSD](https://opensource.org/licenses/BSD-2-Clause).
+* Other content are licensed under the [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).

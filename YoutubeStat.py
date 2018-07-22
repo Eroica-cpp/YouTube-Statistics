@@ -54,7 +54,7 @@ def get_data(html):
 
     channelNames = []
     channelURLs = []
-    for i in soup.find_all("a", href=re.compile(r"/youtube/en/channel/[A-z0-9\-_]+/*")):
+    for i in soup.find_all("a", href=re.compile(r"/youtube/en/channel/.+/*")):
         cID = i['href'].split("/")[-1]
         cName = i.get_text()
         channelURLs.append("https://www.youtube.com/channel/" + cID)
@@ -71,10 +71,9 @@ def get_data(html):
         subscribers.append(subs)
 
     res = []
-    for i in range(len(countries)):
-        if countries[i] in ["United States", "United Kingdom", "N/A"]:
-            item = [channelNames[i], countries[i], monthlyViews[i], subscribers[i], channelURLs[i]]
-            res.append(item)
+    for i in range(len(subscribers)):
+        item = [channelNames[i], countries[i], monthlyViews[i], subscribers[i], channelURLs[i]]
+        res.append(item)
     return res
 
 def output(res, topN=20, fmt="csv"):
@@ -117,7 +116,7 @@ def main():
         parser.print_help()
         return 1
 
-    URL = "https://www.kedoo.com/youtube/en/top-channels.html?period=now&category=25&lang=en"
+    URL = "https://www.kedoo.com/youtube/en/top-channels.html?period=2017-11-01&category=2&lang=en"
     html = get_HTML(URL)
     res = get_data(html)
     output(res, topN=int(options.__dict__["topN"]), fmt=options.__dict__["fmt"])

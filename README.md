@@ -43,19 +43,26 @@ $ YoutubeStat.py --category news --topN 20 --lang en --fmt md
 
 Citation
 ----
-If this work is useful for your research, please cite our [paper](https://library.nextrans.org/) or [code](https://github.com/Eroica-cpp/YouTube-Statistics):
+If this work is useful for your research, please cite our [papers](https://taoli.me/publications/):
 ```
-@misc{li2018youtubestat,
-  author = {Tao Li, Lei Lin},
-  title = {YoutubeStat.py: a Python module to download YouTube statistics and rankings},
-  year = {2018},
-  publisher = {GitHub},
-  journal = {GitHub Repository},
-  url = {https://github.com/Eroica-cpp/YouTube-Statistics},
-  doi = {10.5281/zenodo.1286295}
+@article{li2017youtubestat,
+  author={Li, Tao and Choi, Minsoo and Lin, Lei},
+  title={YoutubeStat.py: a Python Module to Download YouTube Statistics and Rankings},
+  year={2017},
+  month={June}
+  publisher={GitHub},
+  journal={GitHub Repository},
+  url={https://github.com/Eroica-cpp/YouTube-Statistics},
+  doi={10.13140/RG.2.2.26400.43520}
+}
+
+@article{li2018youtube,
+  title={YouTube AV 50K: an Annotated Corpus for Comments in Autonomous Vehicles},
+  author={Li, Tao and Lin, Lei and Choi, Minsoo and Fu, Kaiming and Gong, Siyuan and Wang, Jian},
+  journal={arXiv preprint arXiv:1807.11227},
+  year={2018}
 }
 ```
-[![DOI](https://zenodo.org/badge/136710691.svg)](https://zenodo.org/badge/latestdoi/136710691)
 
 License
 ----

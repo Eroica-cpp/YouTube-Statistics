@@ -31,7 +31,7 @@ import sys
 import re
 import datetime
 import time
-import urllib2
+import urllib3
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -86,15 +86,15 @@ def output(res, topN=20, fmt="csv"):
             for i in res:
                 line = ",".join([str(counter)] + i)
                 f.write(line + "\n")
-                print line
+                print(line)
                 counter += 1
 
     if fmt == "md":
         counter = 1
-        print "| # | Channel | Country | Monthly Views | Subscribers | "
-        print "|----:|----:|----:|----:|----:|"
+        print("| # | Channel | Country | Monthly Views | Subscribers | ")
+        print("|----:|----:|----:|----:|----:|")
         for i in res:
-            print "| {} | [{}]({}) | {} | {} | {} |".format(str(counter), i[0], i[-1], i[1], i[2], i[3])
+            print("| {} | [{}]({}) | {} | {} | {} |".format(str(counter), i[0], i[-1], i[1], i[2], i[3]))
             counter += 1
 
 def main():
